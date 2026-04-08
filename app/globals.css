@@ -1,73 +1,130 @@
 @import "tailwindcss";
 
+/* ===== Theme ===== */
 :root {
-  --theme-primary: #3b82f6;
-  --theme-secondary: #60a5fa;
-  --theme-accent: #2563eb;
-  --theme-light: #dbeafe;
-  --theme-dark: #1e40af;
+  --primary: #111111;
+  --secondary: #6b7280;
+  --border: #e5e7eb;
+  --background: #ffffff;
+  --surface: #f9fafb;
+  --accent: #2563eb;
 }
 
+/* ===== Base ===== */
 * {
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  background: var(--background);
+  color: var(--primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
-/* Visually hidden but accessible to screen readers */
+/* ===== Typography ===== */
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--secondary);
+  line-height: 1.6;
+}
+
+/* ===== Layout Helpers ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ===== Card (Calendar feel) ===== */
+.card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: #d1d5db;
+}
+
+/* ===== Button ===== */
+.button {
+  background: var(--primary);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  opacity: 0.85;
+}
+
+/* ===== Calendar Grid ===== */
+.calendar-day {
+  border-radius: 8px;
+  padding: 8px;
+  transition: background 0.15s ease;
+}
+
+.calendar-day:hover {
+  background: var(--surface);
+}
+
+.calendar-day.selected {
+  background: var(--accent);
+  color: white;
+}
+
+.calendar-day.range {
+  background: #e0edff;
+}
+
+/* ===== Focus ===== */
+.focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.4);
+}
+
+/* ===== Scrollbar (subtle) ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ===== Accessibility ===== */
 .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
-  margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #f3f4f6; /* gray-100 */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #9ca3af; /* gray-400 */
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #6b7280; /* gray-500 */
-}
-
-.focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px #3b82f6;
-}
-
-
-/* 3D Perspective for calendar animations */
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
-/* Fade in animation for tooltip */
+/* ===== Subtle Animation ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(-2px);
   }
   to {
     opacity: 1;
@@ -76,5 +133,5 @@ body {
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.2s ease-out;
+  animation: fadeIn 0.15s ease-out;
 }

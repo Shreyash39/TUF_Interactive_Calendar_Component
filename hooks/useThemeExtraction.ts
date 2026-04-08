@@ -73,31 +73,32 @@ export function useThemeExtraction() {
           return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
         })
       
-      // Apply 60-30-10 color rule
-      const primary = topColors[0] || '#3b82f6'
-      const secondary = topColors[1] || '#60a5fa'
-      const accent = topColors[2] || '#2563eb'
-      const light = lightenColor(primary, 0.6)
-      const dark = darkenColor(primary, 0.3)
-      
-      setDominantColor(primary)
-      
-      // Apply to CSS variables
-      const root = document.documentElement
-      root.style.setProperty('--theme-primary', primary)
-      root.style.setProperty('--theme-secondary', secondary)
-      root.style.setProperty('--theme-accent', accent)
-      root.style.setProperty('--theme-light', light)
-      root.style.setProperty('--theme-dark', dark)
-      
-    } catch (error) {
-      console.warn('Could not extract color from image:', error)
-    }
-  }, [])
+// Apply 60-30-10 color rule
+const primary = topColors[0] || '#3b82f6'
+const secondary = topColors[1] || '#60a5fa'
+const accent = topColors[2] || '#2563eb'
+const light = lightenColor(primary, 0.6)
+const dark = darkenColor(primary, 0.3)
 
-  return {
-    currentImageUrl,
-    extractedColors,
-    setImageElement,
-  }
+const colors = { primary, secondary, accent, light, dark }
+setExtractedColors(colors)
+
+// Apply to CSS variables
+const root = document.documentElement
+root.style.setProperty('--theme-primary', primary)
+root.style.setProperty('--theme-secondary', secondary)
+root.style.setProperty('--theme-accent', accent)
+root.style.setProperty('--theme-light', light)
+root.style.setProperty('--theme-dark', dark)
+
+} catch (error) {
+  console.warn('Could not extract color from image:', error)
+}
+}, [])
+
+return {
+  currentImageUrl,
+  extractedColors,
+  setImageElement,
+}
 }

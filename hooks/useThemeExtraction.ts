@@ -24,8 +24,13 @@ function darkenColor(hex: string, percent: number): string {
 
 export function useThemeExtraction() {
   const [currentImageUrl, setCurrentImageUrl] = useState('')
-  const [dominantColor, setDominantColor] = useState('#3b82f6')
-
+  const [extractedColors, setExtractedColors] = useState({
+    primary: '#3b82f6',
+    secondary: '#60a5fa',
+    accent: '#2563eb',
+    light: '#dbeafe',
+    dark: '#1e40af'
+  })
   const setImageElement = useCallback((img: HTMLImageElement) => {
     setCurrentImageUrl(img.src)
     
@@ -92,7 +97,7 @@ export function useThemeExtraction() {
 
   return {
     currentImageUrl,
-    dominantColor,
+    extractedColors,
     setImageElement,
   }
 }

@@ -272,3 +272,15 @@ export const CalendarApp: React.FC = () => {
     </div>
   );
 };
+
+// ... in the component
+const { currentDate, selectedRange, direction, handleDateSelect, navigateMonth } = calendarState
+
+// ... pass direction to CalendarGrid
+<CalendarGrid 
+  currentDate={currentDate}
+  selectedRange={selectedRange}
+  onDateSelect={handleDateSelect}
+  holidays={holidays}
+  direction={direction}
+/>

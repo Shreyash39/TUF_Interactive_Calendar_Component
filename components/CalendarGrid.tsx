@@ -1,9 +1,18 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { DayCell } from './DayCell';
-import type { DateRange, NavigationDirection } from '../hooks/useCalendarState';
-
 interface CalendarGridProps {
+  currentDate: Date
+  selectedRange: DateRange | null
+  onDateSelect: (date: Date) => void
+  holidays: PublicHoliday[]
+  direction: 'prev' | 'next'
+}
+
+export default function CalendarGrid({ 
+  currentDate, 
+  selectedRange, 
+  onDateSelect,
+  holidays,
+  direction
+}: CalendarGridProps) {
   currentDate: Date;
   selectedRange: DateRange;
   hoveredDate: Date | null;

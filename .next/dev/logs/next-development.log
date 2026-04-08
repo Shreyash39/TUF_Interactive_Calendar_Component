@@ -1,4 +1,2 @@
-{"timestamp":"00:00:05.126","source":"Server","level":"WARN","message":"⚠ Slow filesystem detected. The benchmark took 817ms. If /Users/shreyashkiranchaudhari/Desktop/Projects/TUF_Interactive_Calendar_Component/.next/dev is a network drive, consider moving it to a local folder.\nSee more: https://nextjs.org/docs/app/guides/local-development"}
-{"timestamp":"00:00:05.420","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
-{"timestamp":"00:00:05.420","source":"Server","level":"LOG","message":"  ? turbo (invalid experimental key)"}
-{"timestamp":"00:00:05.420","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:01.307","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:28.975","source":"Server","level":"LOG","message":"○ Compiling / ..."}

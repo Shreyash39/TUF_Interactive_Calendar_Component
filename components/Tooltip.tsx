@@ -15,14 +15,16 @@ interface TooltipProps {
 export const Tooltip: React.FC<TooltipProps> = ({ content, children, delayMs = 300 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
-  const triggerRef = useRef<HTMLElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tooltipId = useRef(`tooltip-${Math.random().toString(36).substr(2, 9)}`);
 
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+        if (timeoutRef.current) {
+  clearTimeout(timeoutRef.current);
+}
       }
     };
   }, []);
@@ -60,13 +62,15 @@ export const Tooltip: React.FC<TooltipProps> = ({ content, children, delayMs = 3
 
   const handleMouseLeave = () => {
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
+      if (timeoutRef.current) {
+  clearTimeout(timeoutRef.current);
+}
     }
     setIsVisible(false);
   };
 
   // Clone child with ref and event handlers
-  const trigger = React.cloneElement(children, {
+  const trigger = React.cloneElement(children as React.ReactElement<any>, {
     ref: triggerRef,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
